@@ -1,13 +1,22 @@
 import { User } from 'src/models/user/entity/user.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Client {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany((type) => User, (rol) => rol.id)
-  user_id: number;
+  @OneToOne(() => User)
+  @JoinColumn()
+  user_id: User;
 
   @Column()
   name: string;
