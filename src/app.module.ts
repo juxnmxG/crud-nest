@@ -13,6 +13,11 @@ import { RolService } from './models/rol/rol.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Rol } from './models/rol/entities/rol.entity';
 import { Connection } from 'typeorm';
+import { User } from './models/user/entity/user.entity';
+import { UserService } from './models/user/user.service';
+import { ClientService } from './models/client/client.service';
+import { Client } from './models/client/entity/clien.entity';
+import { EmployeeService } from './models/employee/employee.service';
 
 
 
@@ -25,7 +30,7 @@ import { Connection } from 'typeorm';
       username: 'root',
       password: 'admin123',
       database: 'crud-nest',
-      entities: [Rol],
+      entities: [Rol, User, Client],
       synchronize: true,
     }),
     UserModule,
@@ -40,7 +45,7 @@ import { Connection } from 'typeorm';
     RolController,
     ClientController,
   ],
-  providers: [AppService, RolService],
+  providers: [AppService, RolService, UserService, ClientService, EmployeeService],
 })
 export class AppModule {
   constructor(private connection: Connection){}
