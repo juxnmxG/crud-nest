@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from '../user/entity/user.entity';
 import { CreateRol } from './dto/create.rol';
 import { UpdateRol } from './dto/update.rol';
 import { Rol } from './entities/rol.entity';
@@ -9,15 +10,16 @@ import { Rol } from './entities/rol.entity';
 export class RolService {
   constructor(
     @InjectRepository(Rol) private readonly rolRepository: Repository<Rol>,
-  ) {}
+    @InjectRepository(User) private readonly userRepository: Repository<User>,  
+    ) {}
   async getRols() {
     return await this.rolRepository.find();
   }
 
   async getRol(id: number) {
-    return await this.rolRepository.findOne({
+    return await this.userRepository.findOne({
       where: {
-        id: id,
+        role_id: id,
       },
     });
   }

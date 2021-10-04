@@ -23,8 +23,8 @@ export class UserService {
   }
 
   async addUser(data: CreateUserDto) {
-    const rol = this.UserRepository.create(data as any);
-    return await this.UserRepository.save(rol);
+    const user = this.UserRepository.create(data as any);
+    return await this.UserRepository.save(user);
   }
 
   async deleteUser(id: number) {
