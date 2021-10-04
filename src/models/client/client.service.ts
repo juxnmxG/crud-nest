@@ -27,7 +27,7 @@ export class ClientService {
   }
 
   async addClient(data: CreateClientDto) {
-    const user: CreateUserDto = new CreateUserDto();
+    let user: CreateUserDto = new CreateUserDto();
     data.user_id = user.id;
     const newUser = await this.userRepository.create(user as any);
     await this.userRepository.save(newUser);

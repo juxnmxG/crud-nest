@@ -28,7 +28,7 @@ export class EmployeService {
   }
 
   async addEmploye(data: CreateEmployeDto) {
-    const user: CreateUserDto = new CreateUserDto();
+    let user: CreateUserDto = new CreateUserDto();
     data.user_id = user.id;
     user.role_id = 2;
     const newUser = await this.userRepository.create(user as any);
